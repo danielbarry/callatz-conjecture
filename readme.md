@@ -11,6 +11,14 @@ properties.
 
 ## Compiling
 
+The following is required:
+
+  * A Linux Operating System
+  * G++ with a version that allows C++11
+
+**NOTE:** This program uses `__int128` which is currently only offered by the
+GNU compiler.
+
 Run the following command:
 
     g++ -std=c++11 main.cc -o cc
