@@ -33,14 +33,24 @@ This will show the available options.
 
 ### Example
 
-The largest number this program can currently compute is
-340282366920938463463374607431768211455 or (2^128)-1. This can be run with:
+The largest number this program can potentially compute is
+340282366920938463463374607431768211455 or (2^128)-1. The reason this is
+theoretical is because all computation must be under the maximum number of
+(2^128)-1, so that:
 
-    ./cc 340282366920938463463374607431768211455 1 1
+    3n+1 <= (2^128)-1
+
+An example would be:
+
+    ./cc 17 1 1
 
 The output should be the following is compiled correctly:
 
-    340282366920938463463374607431768211455     1143
+    17  12
+    Program took: 54us
 
 The first number if the number computed, the second is the number of steps it
 took to compute down to one.
+
+Below that, you are told how long the program took to compute - this one done
+on a moderate speed laptop of 2016.
