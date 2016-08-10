@@ -9,6 +9,9 @@ static void printNum(unsigned __int128 n);
 static unsigned __int128 charArrTou128(char* s);
 static std::string u128ToCharArr(unsigned __int128 n);
 
+static unsigned __int128 U128_MAX;
+static unsigned __int128 U128_CALC_MAX;
+
 /**
  * main()
  *
@@ -19,6 +22,10 @@ static std::string u128ToCharArr(unsigned __int128 n);
  * @return The exit code for the program.
  **/
 int main(int argc, char** argv){
+  /* Work out constants on the fly */
+  U128_MAX = 0;
+  --U128_MAX;
+  U128_CALC_MAX = (U128_MAX - 1) / 3;
   /* Temporary variables */
   std::string::size_type sz;
   unsigned __int128 n = 0;
