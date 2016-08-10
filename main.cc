@@ -1,3 +1,4 @@
+#include <chrono>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -32,6 +33,8 @@ int main(int argc, char** argv){
   unsigned __int128 c = 0;
   unsigned __int128 l = 0;
   unsigned __int128 u = 0;
+  /* Start timing here */
+  auto start = std::chrono::high_resolution_clock::now();
   /* Number of arguments changes the mode */
   switch(argc){
     case 2 :
@@ -88,6 +91,10 @@ int main(int argc, char** argv){
       std::cout << "U is the upper number, default is 10000" << '\n';
       break;
   }
+  /* Stop timing here */
+  auto elapsed = std::chrono::high_resolution_clock::now() - start;
+  long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+  std::cout << "Program took: " << std::to_string(microseconds) << "us\n";
   /* Always return good */
   return 0;
 }
