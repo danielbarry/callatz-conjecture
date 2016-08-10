@@ -109,15 +109,21 @@ static void compute(unsigned __int128 n, unsigned __int128 l, unsigned __int128 
   /* Loop until we hit one or we hit a high number */
   while(n > 1 && c < u){
     if(n & 1 == 1){
-      /* n=3n+1 */
-      n += n + n;
-      ++n;
-      /* Increment our count */
-      ++c;
-      #if DEBUG == 1
-        printNum(n);
-      #endif
-      /* NOTE: This always results in an even number. */
+      /* Check that n < (((2 ^ 128) - 1) - 1) / 3 for potential calculation size */
+      if(n <= U128_CALC_MAX){
+        /* n=3n+1 */
+        n += n + n;
+        ++n;
+        /* Increment our count */
+        ++c;
+        #if DEBUG == 1
+          printNum(n);
+        #endif
+        /* NOTE: This always results in an even number. */
+      }else{
+        /* Overflow detected */
+        throw std::overflow_error("number too large for unsigned __int128 calculation");
+      }
     }
     /* n=n/2 */
     n >>= 1;
